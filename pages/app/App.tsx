@@ -1,6 +1,6 @@
 import React from 'react';
-import { HeartRateContextProvider } from '../../src';
-import HeartRateDevice from './components/HeartRateDevice';
+import { QuatEstimateContextProvider } from '../../src';
+import QuatEstimateDevice from './components/QuatEstimateDevice';
 import Logo from './Logo';  // logo.svg ==> Logo.tsx
 //import './App.css'; // ==> ../index.html
 
@@ -21,9 +21,9 @@ function App() {
           Learn React
         </a>
         <p>
-          <HeartRateContextProvider connectionName='Heart Rate' bluetooth={window.navigator.bluetooth}>
-            <HeartRateDevice />
-          </HeartRateContextProvider>
+          <QuatEstimateContextProvider connectionName='QuatEstimator' bluetooth={window.navigator.bluetooth}>
+            <QuatEstimateDevice />
+          </QuatEstimateContextProvider>
         </p>
       </header>
     </div>

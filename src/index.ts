@@ -1,9 +1,9 @@
-import { HeartRateContextProvider, Services } from './components/HeartRateContextProvider';
-import { HeartRate } from './components/HeartRate';
-import { HeartRateMeasurement, HeartRateService } from './services/HeartRateService'
+import { QuatEstimateContextProvider, Services } from './components/QuatEstimateContextProvider';
+import { QuatEstimate } from './components/QuatEstimate';
+import { Quaternion, QuatEstimateService } from './services/QuatEstimateService'
 
 export {
-    HeartRateContextProvider, Services,
-    HeartRate,
-    HeartRateMeasurement, HeartRateService
+    QuatEstimateContextProvider, Services,
+    QuatEstimate,
+    Quaternion, QuatEstimateService
 }

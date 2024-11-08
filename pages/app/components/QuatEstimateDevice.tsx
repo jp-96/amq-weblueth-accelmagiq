@@ -2,25 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { WbBoundCallback } from '@weblueth/statemachine';
 import { DeviceInformation } from '@weblueth/gattbuilder';
 import { useWbxActor, WbxCustomEventCallback, WbxDevice, WbxServices } from '@weblueth/react';
-import { HeartRate, HeartRateMeasurement, HeartRateService, Services } from '../../../src';
-
-// function convLocation(sensorLocation: any) {
-//     switch (sensorLocation) {
-//         case 0: return 'Other';
-//         case 1: return 'Chest';
-//         case 2: return 'Wrist';
-//         case 3: return 'Finger';
-//         case 4: return 'Hand';
-//         case 5: return 'Ear Lobe';
-//         case 6: return 'Foot';
-//         default: return 'Unknown';
-//     }
-// }
+import { Quaternion, QuatEstimate, QuatEstimateService, Services } from '../../../src';
 
 const defaultName = "(none)";
-// const defaultLocation = "(unknown)";
 
-export default function HeartRateDevice() {
+export default function QuatEstimateDevice() {
     /**
      * State machine (xstate)
      */
@@ -56,60 +42,36 @@ export default function HeartRateDevice() {
     }
 
     /**
-     * Services
+     * DeviceInformation service
      */
-    // const [batteryService, setBatteryService] = useState<BluetoothRemoteGATTService | undefined>(undefined);
-    // const [battery, setBattery] = useState<number | undefined>(undefined);
     const [deviceInfo, setDeviceInfo] = useState<DeviceInformation | undefined>();
 
     const onServicesBound: WbBoundCallback<Services> = async bound => {
-        // battery_service
         if (bound.binding) {
             console.log(bound.target);
-            // setBatteryService(bound.target.battery_service);
             const info = await bound.target.deviceInformationService?.readDeviceInformation();
             console.log(info);
             setDeviceInfo(info)
         } else {
-            // setBatteryService(undefined);
-            // setBattery(undefined);
             setDeviceInfo(undefined);
         }
     };
 
-    // const handlerUpdateBattery = useCallback(async () => {
-    //     if (batteryService) {
-    //         const battery_level = await batteryService.getCharacteristic('battery_level');
-    //         const value = await battery_level.readValue();
-    //         setBattery(value.getUint8(0));
-    //     } else {
-    //         setBattery(undefined);
-    //     }
-
-    // }, [batteryService])
-
     /**
-     * Heart Rate Service
+     * QuatEstimate service
      */
-    // const [heartRate, setHeartRate] = useState<number | undefined>(undefined);
-    // const [location, setLocation] = useState(defaultLocation);
-    //const [heartRate, setHeartRate] = useState<HeartRateMeasurement | undefined>(undefined);
     const [qw, setQw] = useState<number>(1.0);
     const [qx, setQx] = useState<number>(0.0);
     const [qy, setQy] = useState<number>(0.0);
     const [qz, setQz] = useState<number>(0.0);
-    const onHeartRateServiceBound: WbBoundCallback<HeartRateService> = async bound => {
+    const onQuatEstimateBound: WbBoundCallback<QuatEstimateService> = async bound => {
         if (bound.binding) {
-            // // body_sensor_location
-            // const body_sensor_location = await bound.target.getBodySensorLocation();
-            // setLocation(convLocation(body_sensor_location));
+            // bound
         } else {
-            // setHeartRate(undefined);
-            // setLocation(defaultLocation);
+            // unbound
         }
     };
-    const onHeartRateMeasurementChanged: WbxCustomEventCallback<HeartRateMeasurement> = async event => {
-        //setHeartRate(event.detail.heartRate);
+    const onQuatEstimateChanged: WbxCustomEventCallback<Quaternion> = async event => {
         setQw(event.detail.w);
         setQx(event.detail.x);
         setQy(event.detail.y);
@@ -120,7 +82,7 @@ export default function HeartRateDevice() {
         <>
             <WbxDevice onDeviceBound={onDeviceBound} />
             <WbxServices onServicesBound={onServicesBound} />
-            <HeartRate onServiceBound={onHeartRateServiceBound} onHeartRateMeasurementChanged={onHeartRateMeasurementChanged} />
+            <QuatEstimate onServiceBound={onQuatEstimateBound} onQuatEstimateChanged={onQuatEstimateChanged} />
             {connectionName + ": [" + state.toStrings() + "]"}
             <br />
             <button onClick={reset}>RESET</button>
@@ -130,7 +92,7 @@ export default function HeartRateDevice() {
             <br />
             Name: {name} {deviceInfo?.firmwareRevision}
             <br />
-            Heart Rate: {qw}, {qx}, {qy}, {qz}
+            Quat: {qw}, {qx}, {qy}, {qz}
         </>
     );
 }
