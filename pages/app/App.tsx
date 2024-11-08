@@ -1,31 +1,20 @@
-import React from 'react';
+import React from 'react'
 import { QuatEstimateContextProvider } from '../../src';
 import QuatEstimateDevice from './components/QuatEstimateDevice';
-import Logo from './Logo';  // logo.svg ==> Logo.tsx
+import {ThreeFiberSample} from './ThreeFiberSample';
 //import './App.css'; // ==> ../index.html
+
+// https://qiita.com/sho-19202325/items/b1d56c627856818f4bf0
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Logo className="App-logo" />
-        <p>
-          Edit <code>src/app/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <ThreeFiberSample />
         <p>
           <QuatEstimateContextProvider connectionName='QuatEstimator' bluetooth={window.navigator.bluetooth}>
             <QuatEstimateDevice />
           </QuatEstimateContextProvider>
         </p>
-      </header>
     </div>
   );
 }
