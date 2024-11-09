@@ -1,24 +1,25 @@
-import React from 'react'
-import Logo from '../../src';  // logo.svg ==> Logo.tsx
+import React, { useState } from 'react'
+import { QuatEstimateContextProvider } from '../../src';
+import QuatEstimateDevice from './components/QuatEstimateDevice';
+import { ThreeFiberQuaternion } from './components/ThreeFiberQuaternion';
+
 //import './App.css'; // ==> ../index.html
 
+// https://qiita.com/sho-19202325/items/b1d56c627856818f4bf0
+
 function App() {
+  const [connected, setConnected] = useState(false);
+  const [quaternion, setQuaternion] = useState({ x: 0.0, y: 0.0, z: 0.0, w: 1.0 })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <Logo className="App-logo" />
-        <p>
-          Edit <code>src/app/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuatEstimateContextProvider connectionName='QuatEstimator' bluetooth={window.navigator.bluetooth}>
+        <QuatEstimateDevice onConnected={setConnected} onQuaternionChanged={setQuaternion} />
+      </QuatEstimateContextProvider>
+      <ThreeFiberQuaternion
+        rotation={!connected}
+        qw={quaternion.w}
+        qx={quaternion.x} qy={quaternion.y} qz={quaternion.z} />
     </div>
   );
 }
