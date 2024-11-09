@@ -1,10 +1,20 @@
 import { TypedDispatcher, EventDispatcher, ServiceHelper } from "@weblueth/gattbuilder";
 
+const UUID_SERVICE = 'e95d0753-251d-470a-a062-fa1922dfa9a8';
+const UUID_CHAR_DATA = 'e95dca4b-251d-470a-a062-fa1922dfa9a8';
+
+export type Quaternion = {
+    w: number;
+    x: number;
+    y: number;
+    z: number;
+}
+
 /**
  * @hidden
  */
 export enum QuatEstimateCharacteristic {
-    QuatEstimate = 'e95dca4b-251d-470a-a062-fa1922dfa9a8',
+    QuatEstimate = UUID_CHAR_DATA,
 }
 
 /**
@@ -35,7 +45,7 @@ export class QuatEstimateService extends (EventDispatcher as new () => TypedDisp
     /**
      * @hidden
      */
-    public static uuid = "e95d0753-251d-470a-a062-fa1922dfa9a8";
+    public static uuid = UUID_SERVICE;
     /**
      * @hidden
      */
@@ -79,13 +89,6 @@ export class QuatEstimateService extends (EventDispatcher as new () => TypedDisp
         return parseQuatEstimateChanged(view);
     }
 
-}
-
-export type Quaternion = {
-    w: number;
-    x: number;
-    y: number;
-    z: number;
 }
 
 function parseQuatEstimateChanged(data: DataView) {
