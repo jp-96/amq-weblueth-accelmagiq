@@ -6,7 +6,13 @@ import { Quaternion, QuatEstimate, QuatEstimateService, Services } from '../../.
 
 const defaultName = "(none)";
 
-export default function QuatEstimateDevice() {
+
+interface QuatEstimateDeviceProps {
+    onConnected?: (connected: boolean) => void;
+    onQuaternionChanged?: (q: { x: number, y: number, z: number, w: number }) => void;
+}
+
+export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
     /**
      * State machine (xstate)
      */
@@ -67,15 +73,27 @@ export default function QuatEstimateDevice() {
     const onQuatEstimateBound: WbBoundCallback<QuatEstimateService> = async bound => {
         if (bound.binding) {
             // bound
+            if (props.onConnected) {
+                props.onConnected(true);
+            }
         } else {
             // unbound
+            if (props.onConnected) {
+                props.onConnected(false);
+            }
         }
     };
     const onQuatEstimateChanged: WbxCustomEventCallback<Quaternion> = async event => {
-        setQw(event.detail.w);
-        setQx(event.detail.x);
-        setQy(event.detail.y);
-        setQz(event.detail.z);
+        const w = event.detail.w;
+        const x = event.detail.x;
+        const y = event.detail.y;
+        const z = event.detail.z;
+        setQw(w);
+        setQx(x);
+        setQy(y);
+        setQz(z);
+        if (props.onQuaternionChanged)
+            props.onQuaternionChanged({ x, y, z, w })
     };
 
     return (
