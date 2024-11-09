@@ -32,17 +32,14 @@ interface ThreeFiberQuaternionProps {
 
 export const ThreeFiberQuaternion = (props: ThreeFiberQuaternionProps) => {
     const quaternion = props.rotation ? undefined : new Quaternion(props.qx, props.qy, props.qz, props.qw);
-    const position = new Vector3(-5.0, 0.0, 2); // 横から見る良いアングル
-    //const position = new Vector3(-5.0, 0.0, 0);
-    //const rotation = new Euler(Math.PI/6.0, 0.0, 0.0);
+    const position = new Vector3(-5.0, 0.0, -0.5);
+    const rotation = new Euler(-Math.atan2(position.x, position.z), 0.0, -Math.PI / 2, "ZYX");
     return (
         <div className='canvas-container'>
-            <Canvas camera={{ position, rotation: [Math.PI / 2, -Math.PI / 2, 0] }}>
+            <Canvas camera={{ position, rotation }}>
                 <ambientLight />
                 <pointLight position={[10, 10, 10]} />
-                <Box position={[0.0, 1.5, 0.0]} quaternion={quaternion} />
-                <Box position={[0.0, 0.0, 0.0]} quaternion={quaternion} />
-                <Box position={[1.5, 0.0, 0.0]} quaternion={quaternion} />
+                <Box position={[0.0, 0.0, 2.0]} quaternion={quaternion} />
             </Canvas>
         </div>
     )
