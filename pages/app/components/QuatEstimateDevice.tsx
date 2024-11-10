@@ -96,7 +96,7 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
     };
 
     return (
-        <>
+        <div className='quatestimate-device'>
             <WbxDevice onDeviceBound={onDeviceBound} />
             <WbxServices onServicesBound={onServicesBound} />
             <QuatEstimate onServiceBound={onQuatEstimateBound} onQuatEstimateChanged={onQuatEstimateChanged} />
@@ -110,6 +110,6 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
             Name: {name}
             <br />
             Quat: {qw}, {qx}, {qy}, {qz}
-        </>
+        </div>
     );
 }
