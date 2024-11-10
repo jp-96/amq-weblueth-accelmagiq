@@ -6,7 +6,6 @@ import { Quaternion, QuatEstimate, QuatEstimateService, Services } from '../../.
 
 const defaultName = "(none)";
 
-
 interface QuatEstimateDeviceProps {
     onConnected?: (connected: boolean) => void;
     onQuaternionChanged?: (q: { x: number, y: number, z: number, w: number }) => void;
@@ -97,7 +96,7 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
     };
 
     return (
-        <>
+        <div className='quatestimate-device'>
             <WbxDevice onDeviceBound={onDeviceBound} />
             <WbxServices onServicesBound={onServicesBound} />
             <QuatEstimate onServiceBound={onQuatEstimateBound} onQuatEstimateChanged={onQuatEstimateChanged} />
@@ -108,9 +107,9 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
             <button onClick={connect}>CONNECT</button>
             <button onClick={disconnect}>DISCONNECT</button>
             <br />
-            Name: {name} {deviceInfo?.firmwareRevision}
+            Name: {name}
             <br />
             Quat: {qw}, {qx}, {qy}, {qz}
-        </>
+        </div>
     );
 }
