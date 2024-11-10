@@ -1,13 +1,13 @@
 {
-  "name": "@weblueth/custom",
-  "version": "0.1.0",
-  "description": "@weblueth, custom template.",
+  "name": "@weblueth/accelmagiq",
+  "version": "0.0.1",
+  "description": "Web Bluetooth react accelmagiq service.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jp-rad/weblueth-custom.git"
+    "url": "git+https://github.com/jp-rad/weblueth-accelmagiq.git"
   },
   "targets": {
     "pages": {
