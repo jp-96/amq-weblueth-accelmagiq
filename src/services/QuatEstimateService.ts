@@ -1,7 +1,12 @@
 import { TypedDispatcher, EventDispatcher, ServiceHelper } from "@weblueth/gattbuilder";
 
-const UUID_SERVICE = 'e95d0753-251d-470a-a062-fa1922dfa9a8';
-const UUID_CHAR_DATA = 'e95dca4b-251d-470a-a062-fa1922dfa9a8';
+
+// UUID:
+//      BASE = {b9db0000-cada-42b6-a36e-eda54d006627}
+//   Service = {b9db3d01-cada-42b6-a36e-eda54d006627}
+// Data Char = {b9db3d40-cada-42b6-a36e-eda54d006627}
+const UUID_SERVICE = 'b9db3d01-cada-42b6-a36e-eda54d006627';
+const UUID_CHAR_DATA = 'b9db3d40-cada-42b6-a36e-eda54d006627';
 
 export type Quaternion = {
     w: number;
