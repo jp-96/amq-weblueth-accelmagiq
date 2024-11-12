@@ -19,9 +19,9 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
     const connectionName = state.context.conn.name;
 
     // xstate actions
-    const reset = () => send("RESET");
+    // const reset = () => send("RESET");
     const request = () => send("REQUEST");
-    const connect = () => send("CONNECT");
+    // const connect = () => send("CONNECT");
     const disconnect = () => send("DISCONNECT");
 
     // rejectedReason
@@ -102,9 +102,7 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
             <QuatEstimate onServiceBound={onQuatEstimateBound} onQuatEstimateChanged={onQuatEstimateChanged} />
             {connectionName + ": [" + state.toStrings() + "]"}
             <br />
-            <button onClick={reset}>RESET</button>
-            <button onClick={request}>REQUEST</button>
-            <button onClick={connect}>CONNECT</button>
+            <button onClick={request}>CONNECT</button>
             <button onClick={disconnect}>DISCONNECT</button>
             <br />
             Name: {name}
