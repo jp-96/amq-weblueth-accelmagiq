@@ -23,8 +23,13 @@ function Box(props: DemoMeshProps /** ThreeElements['mesh'] */) {
             scale={hovered ? 1.5 : 1}
             onPointerOver={(event) => hover(true)}
             onPointerOut={(event) => hover(false)}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshNormalMaterial attach='material' />
+            <boxGeometry args={[1.0, 1.5, 0.2]} />
+            <meshBasicMaterial attach="material-0" color="pink" />
+            <meshBasicMaterial attach="material-1" color="yellow" />
+            <meshBasicMaterial attach="material-2" color="red" />
+            <meshBasicMaterial attach="material-3" color="darkgreen" />
+            <meshBasicMaterial attach="material-4" color="darkblue" />
+            <meshBasicMaterial attach="material-5" color="darkgray" />
         </mesh>
     )
 }
