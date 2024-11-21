@@ -2,7 +2,7 @@
 
 Web Bluetooth react accelmagiq service.
 
-[Live Demo (GitHub Pages)](https://jp-rad.github.io/weblueth-accelmagiq/)
+[Live Demo (GitHub Pages)](https://jp-96.github.io/amq-weblueth-accelmagiq/)
 
 ## Installation:
 
