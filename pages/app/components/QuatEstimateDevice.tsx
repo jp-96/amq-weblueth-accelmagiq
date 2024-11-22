@@ -100,6 +100,8 @@ export default function QuatEstimateDevice(props: QuatEstimateDeviceProps) {
             <WbxDevice onDeviceBound={onDeviceBound} />
             <WbxServices onServicesBound={onServicesBound} />
             <QuatEstimate onServiceBound={onQuatEstimateBound} onQuatEstimateChanged={onQuatEstimateChanged} />
+            <a href='https://makecode.microbit.org/_gyohhH1Hyc9u' rel='nofollow noopener' target='_blank'>Install AccelMagiQ-Demo for micro:bit.</a>
+            <br />
             {connectionName + ": [" + state.toStrings() + "]"}
             <br />
             <button onClick={request}>CONNECT</button>
